@@ -72,7 +72,7 @@ class TokenFactory(Base):
         payload = create_payload({
             'class': '1',
             'subclass': '0',
-            'token_id': token_id,
+            'token_id': f(token_id),
             'control': control,
             'manufacturer_code': manufacturer_code,
             'is_stid': is_stid,
@@ -89,7 +89,7 @@ class TokenFactory(Base):
         payload = create_payload({
             'class': '1',
             'subclass': '1',
-            'token_id': token_id,
+            'token_id': f(token_id),
             'control': control,
             'manufacturer_code': manufacturer_code,
             'is_stid': is_stid,
