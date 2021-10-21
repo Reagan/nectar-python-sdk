@@ -158,7 +158,7 @@ class TokenFactory(Base):
         payload = create_payload({
             'class': '2',
             'subclass': '3',
-            'token_id': token_id,
+            'token_id': f(token_id),
             'new_vending_key': new_vending_key,
             'new_supply_group_code': new_supply_group_code,
             'new_tariff_index': new_tariff_index,
@@ -177,14 +177,14 @@ class TokenFactory(Base):
 
     def generate_set_2nd_section_decoder_key_token(self, token_id: datetime, new_vending_key: str,
                                                    new_supply_group_code: str, new_tariff_index: str,
-                                                   new_key_revision_no: str, new_key_type: str, new_key_expiry_no: str,
+                                                   new_key_revision_no: int, new_key_type: int, new_key_expiry_no: int,
                                                    new_drn: str, new_issuer_identification_no: str, ro: int,
-                                                   is_stid: bool, drn: str, configRef: str,
+                                                   is_stid: bool, drn: str, config_ref: str,
                                                    debug: bool):
         payload = create_payload({
             'class': '2',
             'subclass': '4',
-            'token_id': token_id,
+            'token_id': f(token_id),
             'new_vending_key': new_vending_key,
             'new_supply_group_code': new_supply_group_code,
             'new_tariff_index': new_tariff_index,
@@ -196,7 +196,7 @@ class TokenFactory(Base):
             'ro': ro,
             'is_stid': is_stid,
             'drn': drn,
-            'config_ref': configRef,
+            'config_ref': config_ref,
             'debug': debug,
         })
         return self.post(self.token_path, payload, self.content_type)
