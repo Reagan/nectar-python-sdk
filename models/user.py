@@ -16,10 +16,10 @@ class User:
         self.created_at = created_at
 
     def __str__(self):
-        return 'First Name: {}, Last Name: {},' \
+        return 'First Name: {}, Last Name: {}, ' \
                'Username: {}, Password: {}, ' \
-               'Phone No: {}, Image URL: {},' \
-               'Ref: {}, Email: {},' \
+               'Phone No: {}, Image URL: {}, ' \
+               'Ref: {}, Email: {}, ' \
                'Activated: {}, Created At: {}'.format(self.first_name, self.last_name,
                                                       self.username, self.password,
                                                       self.phone_no, self.image_url,
