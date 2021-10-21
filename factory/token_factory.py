@@ -39,7 +39,7 @@ class TokenFactory(Base):
         payload = create_payload({
             'class': '0',
             'subclass': '1',
-            'token_id': token_id,
+            'token_id': f(token_id),
             'amount': amount,
             'random_no': random_no,
             'is_stid': is_stid,
@@ -55,8 +55,8 @@ class TokenFactory(Base):
                            debug: bool):
         payload = create_payload({
             'class': '0',
-            'subclass': '1',
-            'token_id': token_id,
+            'subclass': '2',
+            'token_id': f(token_id),
             'amount': amount,
             'random_no': random_no,
             'is_stid': is_stid,
