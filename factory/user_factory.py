@@ -55,11 +55,11 @@ class UserFactory(Base):
 
     def update_user(self, ref: str, first_name: str, last_name: str, username: str,
                     password: str, phone_no: str, email: str, image_url: str,
-                    activated: bool):
+                    activated: bool) -> str:
         payload = create_payload(create_update_user_params(ref, first_name, last_name, username,
                                                            password, phone_no, email, image_url,
                                                            activated))
         return self.put(self.users_path, payload, self.content_type)['status']['message']
 
-    def delete_user(self):
+    def delete_user(self) -> str:
         return self.delete(self.users_path, '', self.content_type)['status']['message']
