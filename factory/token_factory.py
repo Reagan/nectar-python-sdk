@@ -1,9 +1,11 @@
 from factory.base import Base
 
 from datetime import datetime
+from factory.base import create_payload
+from factory.base import f
 
 
-class Token(Base):
+class TokenFactory(Base):
 
     def __init__(self, key: str, secret: str):
         super().__init__(key, secret)
@@ -20,7 +22,7 @@ class Token(Base):
         payload = create_payload({
             'class': '0',
             'subclass': '0',
-            'token_id': token_id,
+            'token_id': f(token_id),
             'amount': amount,
             'random_no': random_no,
             'is_stid': is_stid,
