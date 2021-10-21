@@ -106,7 +106,7 @@ class TokenFactory(Base):
         payload = create_payload({
             'class': '2',
             'subclass': '0',
-            'token_id': token_id,
+            'token_id': f(token_id),
             'maximum_power_limit': maximum_power_limit,
             'random_no': random_no,
             'is_stid': is_stid,
