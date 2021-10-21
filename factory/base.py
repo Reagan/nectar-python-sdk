@@ -37,17 +37,27 @@ def create_payload(params: dict) -> Payload:
 
 
 def is_valid(resp: dict) -> bool:
-    return resp['status']['code'] == 200
+    if isinstance(resp['status'], int):
+        return resp['status'] == 200
+    elif isinstance(resp['status'], dict):
+        return resp['status']['code'] == 200
 
 
 def validated_resp(resp: dict) -> dict:
     if is_valid(resp):
         return resp
-    raise Exception(resp['status']['message'])
+    elif isinstance(resp['status'], int):
+        raise Exception('{} {}'.format(resp['error'], resp['path']))
+    elif isinstance(resp['status'], dict):
+        raise Exception(resp['status']['message'])
 
 
 def e(resp: dict, elem: str) -> str:
     return resp['data']['data'][elem]
+
+
+def f(token_id: datetime) -> str:
+    return token_id.strftime("%Y-%m-%dT%H:%M")
 
 
 class Base:

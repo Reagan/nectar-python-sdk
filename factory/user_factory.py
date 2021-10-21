@@ -1,6 +1,5 @@
 from factory.base import Base
 from factory.base import create_payload
-from factory.base import is_valid
 from factory.base import e
 from models.user import User
 
