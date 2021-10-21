@@ -15,3 +15,14 @@ class User:
         self.activated = activated
         self.created_at = created_at
 
+    def __str__(self):
+        return 'First Name: {}, Last Name: {},' \
+               'Username: {}, Password: {}, ' \
+               'Phone No: {}, Image URL: {},' \
+               'Ref: {}, Email: {},' \
+               'Activated: {}, Created At: {}'.format(self.first_name, self.last_name,
+                                                      self.username, self.password,
+                                                      self.phone_no, self.image_url,
+                                                      self.ref, self.email,
+                                                      self.activated, self.created_at)
+

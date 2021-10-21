@@ -9,7 +9,7 @@ class PublicKeys(Base):
 
     def create_public_key(self, name: str,
                           key: str, activated: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'name': name,
             'key': key,
             'activated': activated,

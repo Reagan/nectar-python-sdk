@@ -12,7 +12,7 @@ class Notifications(Base):
 
     def set_notification_read_status(self, notification_ref: str,
                                      status: bool, timestamp: int):
-        payload = self.create_payload({
+        payload = create_payload({
             'notification_ref': notification_ref,
             'status': status,
             'timestamp': timestamp,

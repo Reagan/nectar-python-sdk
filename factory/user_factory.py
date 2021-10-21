@@ -1,7 +1,8 @@
 from factory.base import Base
+from factory.base import create_payload
+from factory.base import validate_response
+from factory.base import i
 from models.user import User
-
-import json
 
 
 def create_user_params(first_name: str, last_name: str, username: str,
@@ -20,12 +21,13 @@ def create_user_params(first_name: str, last_name: str, username: str,
 
 
 def create_update_user_params(ref: str, first_name: str, last_name: str, username: str,
-                              password: str, phone_no: str, email: str, image_url: str) -> dict:
+                              password: str, phone_no: str, email: str, image_url: str,
+                              activated: bool) -> dict:
     update_user_params = {
         'ref': ref
     }
     user_params = create_user_params(first_name, last_name, username, password,
-                                     phone_no, email, image_url)
+                                     phone_no, email, image_url, activated)
     return {**update_user_params, **user_params}
 
 
@@ -38,25 +40,28 @@ class UserFactory(Base):
     def create_user(self, first_name: str, last_name: str, username: str,
                     password: str, phone_no: str, email: str, image_url: str,
                     activated: bool):
-        payload = self.create_payload(create_user_params(first_name, last_name, username,
-                                                         password, phone_no, email, image_url,
-                                                         activated))
+        payload = create_payload(create_user_params(first_name, last_name, username,
+                                                    password, phone_no, email, image_url,
+                                                    activated))
         return self.post(self.users_path, payload, self.content_type)
 
     def get_user(self) -> User:
-        resp = json.loads(self.get(self.users_path, '', self.content_type))
-        return User(resp['first_name'], resp['last_name'],
-                    resp['username'], resp['password'],
-                    resp['phone_no'], resp['image_url'],
-                    resp['ref'], resp['email'],
-                    resp['activated'], resp['created_at'])
+        resp = self.get(self.users_path, '', self.content_type)
+        if validate_response(resp):
+            return User(i(resp, 'first_name'), i(resp, 'last_name'),
+                        i(resp, 'username'), i(resp, 'password'),
+                        i(resp, 'phone_no'), i(resp, 'image_url'),
+                        i(resp, 'ref'), i(resp, 'email'),
+                        i(resp, 'activated'), i(resp, 'created_at'))
+        else:
+            raise Exception(resp['status']['message'])
 
     def update_user(self, ref: str, first_name: str, last_name: str, username: str,
                     password: str, phone_no: str, email: str, image_url: str,
                     activated: bool):
-        payload = self.create_payload(create_update_user_params(ref, first_name, last_name, username,
-                                                                password, phone_no, email, image_url,
-                                                                activated))
+        payload = create_payload(create_update_user_params(ref, first_name, last_name, username,
+                                                           password, phone_no, email, image_url,
+                                                           activated))
         return self.put(self.users_path, payload, self.content_type)
 
     def delete_user(self, user_ref: str):

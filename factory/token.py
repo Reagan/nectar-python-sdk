@@ -17,7 +17,7 @@ class Token(Base):
                                    random_no: int, is_stid: bool,
                                    drn: str, config_ref: str,
                                    debug: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'class': '0',
             'subclass': '0',
             'token_id': token_id,
@@ -34,7 +34,7 @@ class Token(Base):
                              random_no: int, is_stid: bool,
                              drn: str, config_ref: str,
                              debug: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'class': '0',
             'subclass': '1',
             'token_id': token_id,
@@ -51,7 +51,7 @@ class Token(Base):
                            random_no: int, is_stid: bool,
                            drn: str, config_ref: str,
                            debug: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'class': '0',
             'subclass': '1',
             'token_id': token_id,
@@ -67,7 +67,7 @@ class Token(Base):
     def generate_initiate_meter_test_display10_token(self, token_id: datetime, control: str,
                                                      manufacturer_code: str, is_stid: bool,
                                                      drn: str, config_ref: str, debug: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'class': '1',
             'subclass': '0',
             'token_id': token_id,
@@ -84,7 +84,7 @@ class Token(Base):
     def generate_initiate_meter_test_display11_token(self, token_id: datetime, control: str,
                                                      manufacturer_code: int, is_stid: bool, drn: str,
                                                      config_ref: str, debug: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'class': '1',
             'subclass': '1',
             'token_id': token_id,
@@ -101,7 +101,7 @@ class Token(Base):
     def generate_set_maximum_power_limit_token(self, token_id: datetime, maximum_power_limit: int,
                                                random_no: int, is_stid: bool, drn: str,
                                                config_ref: str, debug: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'class': '2',
             'subclass': '0',
             'token_id': token_id,
@@ -118,7 +118,7 @@ class Token(Base):
     def generate_clear_credit_token(self, token_id: datetime, register: int,
                                     random_no: int, is_stid: bool, drn: str,
                                     config_ref: str, debug: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'class': '2',
             'subclass': '1',
             'token_id': token_id,
@@ -134,7 +134,7 @@ class Token(Base):
     def generate_set_tariff_rate_token(self, token_id: datetime, tariff_rate: int,
                                        random_no: int, is_stid: bool, drn: str,
                                        config_ref: str, debug: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'class': '2',
             'subclass': '2',
             'token_id': token_id,
@@ -153,7 +153,7 @@ class Token(Base):
                                                    new_key_type: int, new_key_expiry_no: int, new_drn: str,
                                                    new_issuer_identification_no: str, ro: int, is_stid: bool,
                                                    drn: str, config_ref: str, debug: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'class': '2',
             'subclass': '3',
             'token_id': token_id,
@@ -179,7 +179,7 @@ class Token(Base):
                                                    new_drn: str, new_issuer_identification_no: str, ro: int,
                                                    is_stid: bool, drn: str, configRef: str,
                                                    debug: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'class': '2',
             'subclass': '4',
             'token_id': token_id,
@@ -201,7 +201,7 @@ class Token(Base):
 
     def generate_clear_tamper_condition_token(self, token_id: datetime, pad: int,
                                               random_no: int, is_stid: bool, drn: str, config_ref: str, debug: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'class': '2',
             'subclass': '5',
             'token_id': token_id,
@@ -217,7 +217,7 @@ class Token(Base):
     def generate_set_maximum_phase_power_unbalance_limit_token(self, token_id: datetime,
                                                                mppul: int, random_no: int,
                                                                is_stid: bool, drn: str, config_ref: str, debug: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'class': '2',
             'subclass': '6',
             'token_id': token_id,
@@ -234,7 +234,7 @@ class Token(Base):
                                               random_no: int, is_stid: bool,
                                               drn: str, config_ref: str,
                                               debug: bool):
-        payload = self.create_payload({
+        payload = create_payload({
             'class': '2',
             'subclass': '7',
             'token_id': token_id,

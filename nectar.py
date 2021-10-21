@@ -8,6 +8,6 @@ class Nectar:
         self.key = key
         self.secret = secret
 
-    def get_user_factory(self) -> User:
+    def get_user(self) -> User:
         return UserFactory(self.key, self.secret).get_user()
 
