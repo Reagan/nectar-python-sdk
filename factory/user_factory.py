@@ -39,11 +39,11 @@ class UserFactory(Base):
 
     def create_user(self, first_name: str, last_name: str, username: str,
                     password: str, phone_no: str, email: str, image_url: str,
-                    activated: bool) -> str:
+                    activated: bool) -> dict:
         payload = create_payload(create_user_params(first_name, last_name, username,
                                                     password, phone_no, email, image_url,
                                                     activated))
-        return self.post(self.users_path, payload, self.content_type)['status']['message']
+        return self.post(self.users_path, payload, self.content_type)
 
     def get_user(self) -> User:
         resp = self.get(self.users_path, '', self.content_type)
