@@ -206,7 +206,7 @@ class TokenFactory(Base):
         payload = create_payload({
             'class': '2',
             'subclass': '5',
-            'token_id': token_id,
+            'token_id': f(token_id),
             'pad': pad,
             'random_no': random_no,
             'is_stid': is_stid,
