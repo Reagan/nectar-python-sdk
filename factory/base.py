@@ -36,11 +36,17 @@ def create_payload(params: dict) -> Payload:
     return Payload(params)
 
 
-def validate_response(resp: dict) -> bool:
+def is_valid(resp: dict) -> bool:
     return resp['status']['code'] == 200
 
 
-def i(resp: dict, elem: str) -> str:
+def validated_resp(resp: dict) -> dict:
+    if is_valid(resp):
+        return resp
+    raise Exception(resp['status']['message'])
+
+
+def e(resp: dict, elem: str) -> str:
     return resp['data']['data'][elem]
 
 
@@ -60,21 +66,22 @@ class Base:
                                             curr_date, nonce)
         content, headers = self.prepare_request(generated_hmac, content_type, md5(payload.to_json()), curr_date, nonce,
                                                 payload)
-        return requests.post("{}{}".format(self.base_url, path), data=content, headers=headers).json()
+        return validated_resp(requests.post("{}{}".format(self.base_url, path), data=content, headers=headers).json())
 
     def get(self, path: str, path_args: str, content_type: str) -> dict:
         nonce = generate_nonce()
         curr_date = datetime.now().strftime("%a, %d %b %Y %H:%M:%S")
         generated_hmac = generate_hmac_auth(self.secret, Http.GET, path, md5(''), content_type, curr_date, nonce)
         content, headers = self.prepare_request(generated_hmac, content_type, md5(''), curr_date, nonce)
-        return requests.get("{}{}?{}".format(self.base_url, path, path_args), headers=headers).json()
+        return validated_resp(requests.get("{}{}?{}".format(self.base_url, path, path_args), headers=headers).json())
 
     def delete(self, path: str, path_args: str, content_type: str) -> dict:
         nonce = generate_nonce()
         curr_date = datetime.now().strftime("%a, %d %b %Y %H:%M:%S")
         generated_hmac = generate_hmac_auth(self.secret, Http.DELETE, path, md5(''), content_type, curr_date, nonce)
         content, headers = self.prepare_request(generated_hmac, content_type, md5(''), curr_date, nonce)
-        return requests.delete("{}{}?{}".format(self.base_url, path, path_args), data=content, headers=headers).json()
+        return validated_resp(
+            requests.delete("{}{}?{}".format(self.base_url, path, path_args), data=content, headers=headers).json())
 
     def put(self, path: str, payload: Payload, content_type: str) -> dict:
         nonce = generate_nonce()
@@ -84,7 +91,7 @@ class Base:
                                             curr_date, nonce)
         content, headers = self.prepare_request(generated_hmac, content_type, md5(payload_str), curr_date, nonce,
                                                 payload)
-        return requests.put("{}{}".format(self.base_url, path), data=content, headers=headers).json()
+        return validated_resp(requests.put("{}{}".format(self.base_url, path), data=content, headers=headers).json())
 
     def prepare_request(self, hmac: str, content_type: str, md5: str,
                         date: str, nonce: str, payload: Payload = None) -> tuple:
