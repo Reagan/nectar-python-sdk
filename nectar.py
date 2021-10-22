@@ -4,6 +4,7 @@ from factory.configurations_factory import ConfigurationsFactory
 from factory.credentials_factory import CredentialsFactory
 from factory.public_keys_factory import PublicKeysFactory
 from factory.credits_factory import CreditsFactory
+from factory.notifications_factory import NotificationsFactory
 
 
 class Nectar:
@@ -29,6 +30,10 @@ class Nectar:
 
     def get_credits_factory(self) -> CreditsFactory:
         return CreditsFactory(self.key, self.secret)
+
+    def get_notifications_factory(self) -> NotificationsFactory:
+        return NotificationsFactory(self.key, self.secret)
+
 
 
 
