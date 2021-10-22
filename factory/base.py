@@ -19,7 +19,8 @@ class Http(Enum):
 
 def generate_hmac_auth(secret: str, verb: Http, path: str,
                        md5: str, content_type: str, date: str, nonce: str) -> str:
-    content_str = verb.name.upper() + path + md5 + content_type + date + nonce
+    content_str = verb.name.upper() + (path[
+                                      :path.index('?')] if '?' in path else path) + md5 + content_type + date + nonce
     message = content_str.encode()
     return base64.b64encode(hmac.new(secret.encode(), message, hashlib.sha256).hexdigest().encode()).decode("utf-8")
 
