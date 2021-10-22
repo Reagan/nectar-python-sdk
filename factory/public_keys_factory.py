@@ -1,7 +1,9 @@
 from factory.base import Base
 
+from factory.base import create_payload
 
-class PublicKeys(Base):
+
+class PublicKeysFactory(Base):
 
     def __init__(self, key: str, secret: str):
         super().__init__(key, secret)
@@ -14,12 +16,11 @@ class PublicKeys(Base):
             'key': key,
             'activated': activated,
         })
-        return self.put(self.public_keys_path, payload, self.content_type)
+        return self.post(self.public_keys_path, payload, self.content_type)
 
     def activate_public_keys(self, ref: str):
-        endpoint = '{}?ref={}'.format(self.credentials_path, ref)
+        endpoint = '{}?ref={}'.format(self.public_keys_path, ref)
         return self.put(endpoint, None, self.content_type)
 
     def deactivate_public_keys(self, ref: str):
-        endpoint = '{}?ref={}'.format(self.credentials_path, ref)
-        return self.delete(endpoint, None, self.content_type)
+        return self.delete(self.public_keys_path, 'ref={}'.format(ref), self.content_type)
