@@ -1,6 +1,7 @@
 from factory.user_factory import UserFactory
 from factory.token_factory import TokenFactory
 from factory.configurations_factory import ConfigurationsFactory
+from factory.credentials_factory import CredentialsFactory
 
 
 class Nectar:
@@ -17,6 +18,9 @@ class Nectar:
 
     def get_configurations_factory(self) -> ConfigurationsFactory:
         return ConfigurationsFactory(self.key, self.secret)
+
+    def get_credentials_factory(self) -> CredentialsFactory:
+        return CredentialsFactory(self.key, self.secret)
 
 
 
