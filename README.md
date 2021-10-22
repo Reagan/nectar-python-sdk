@@ -4,7 +4,7 @@ Nectar Python SDK is a wrapper that allows generation of STS compliant prepaid t
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install this SDK.
 
 ```bash
 pip install nectar-python-sdk
