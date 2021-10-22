@@ -1,7 +1,5 @@
 from factory.base import Base
 
-from factory.base import create_payload
-
 
 class ConfigurationsFactory(Base):
 

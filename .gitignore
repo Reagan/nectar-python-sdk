@@ -115,3 +115,6 @@ settings.py
 
 # mac temp files
 .DS_Store
+
+# Github access token
+access_token
