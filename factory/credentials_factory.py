@@ -1,7 +1,7 @@
 from factory.base import Base
 
 
-class Credentials(Base):
+class CredentialsFactory(Base):
 
     def __init__(self, key: str, secret: str):
         super().__init__(key, secret)
@@ -15,5 +15,4 @@ class Credentials(Base):
         return self.put(endpoint, None, self.content_type)
 
     def deactivate_credentials(self, ref: str):
-        endpoint = '{}?ref={}'.format(self.credentials_path, ref)
-        return self.delete(endpoint, None, self.content_type)
+        return self.delete(self.credentials_path, 'ref={}'.format(ref), self.content_type)
