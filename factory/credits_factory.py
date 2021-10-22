@@ -1,11 +1,11 @@
 from factory.base import Base
 
 
-class Credits(Base):
+class CreditsFactory(Base):
 
     def __init__(self, key: str, secret: str):
         super().__init__(key, secret)
-        self.credits_path = "/v1/configurations"
+        self.credits_path = "/v1/credits"
         self.transactions_path = "/v1/transactions"
 
     def get_credits(self):

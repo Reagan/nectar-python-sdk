@@ -3,6 +3,7 @@ from factory.token_factory import TokenFactory
 from factory.configurations_factory import ConfigurationsFactory
 from factory.credentials_factory import CredentialsFactory
 from factory.public_keys_factory import PublicKeysFactory
+from factory.credits_factory import CreditsFactory
 
 
 class Nectar:
@@ -25,6 +26,9 @@ class Nectar:
 
     def get_public_keys_factory(self) -> PublicKeysFactory:
         return PublicKeysFactory(self.key, self.secret)
+
+    def get_credits_factory(self) -> CreditsFactory:
+        return CreditsFactory(self.key, self.secret)
 
 
 
