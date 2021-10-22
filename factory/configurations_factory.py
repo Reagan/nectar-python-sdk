@@ -1,5 +1,7 @@
 from factory.base import Base
 
+from factory.base import create_payload
+
 
 class ConfigurationsFactory(Base):
 
@@ -15,5 +17,4 @@ class ConfigurationsFactory(Base):
         return self.put(endpoint, None, self.content_type)
 
     def deactivate_configuration(self, ref: str):
-        endpoint = '{}?ref={}'.format(self.configuration_path, ref)
-        return self.delete(endpoint, None, self.content_type)
+        return self.delete(self.configuration_path, 'ref={}'.format(ref), self.content_type)
