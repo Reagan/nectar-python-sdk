@@ -62,8 +62,7 @@ def f(token_id: datetime) -> str:
 
 
 class Base:
-    # base_url = "https://api.nectar.software"
-    base_url = "http://localhost:2000"
+    base_url = "https://api.nectar.software"
 
     def __init__(self, key: str, secret: str):
         self.key = key
