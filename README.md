@@ -7,7 +7,7 @@ Nectar Python SDK is a wrapper that allows generation of STS compliant prepaid t
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install this SDK.
 
 ```bash
-pip install nectar-python-sdk
+pip install nectar_python_sdk
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ image_url = 'https://i.img.co/1.jpg'
 activated = True
 
 print(nectar.get_user_factory().create_user(first_name, last_name, username, password,
-                                             phone_no, email, image_url, activated))
+                                            phone_no, email, image_url, activated))
 
 # update user
 ref = 'f6080ca3-2b75-4beb-97d6-72f98082bdf5'
@@ -54,7 +54,7 @@ image_url = 'https://i.img.co/2.jpg'
 activated = False
 
 print(nectar.get_user_factory().update_user(ref, first_name, last_name, username, password,
-                                             phone_no, email, image_url, activated))
+                                            phone_no, email, image_url, activated))
 
 """
 Token Endpoints
@@ -62,7 +62,6 @@ Token Endpoints
 
 # get token
 print(nectar.get_token_factory().get_token('466d464c-eba1-4157-baa8-e18465d4b566'))
-
 
 # generate electricity token
 tid = datetime.datetime(2021, 10, 21, 11, 00)
@@ -85,15 +84,15 @@ print(nectar.get_token_factory().generate_gas_token(tid, amount, random_no, is_s
 control = '68719476735'
 manufacturer_code = '21'
 print(nectar.get_token_factory()
-       .generate_initiate_meter_test_display10_token(tid, control, manufacturer_code,
-                                                     is_stid, drn, config_ref, debug))
+      .generate_initiate_meter_test_display10_token(tid, control, manufacturer_code,
+                                                    is_stid, drn, config_ref, debug))
 
 # generate initiate meter test display 11
 control = '268435455'
 manufacturer_code = '1234'
 print(nectar.get_token_factory()
-       .generate_initiate_meter_test_display11_token(tid, control, manufacturer_code,
-                                                     is_stid, drn, config_ref, debug))
+      .generate_initiate_meter_test_display11_token(tid, control, manufacturer_code,
+                                                    is_stid, drn, config_ref, debug))
 
 # generate set maximum power limit token
 maximum_power_limit = 100
@@ -103,12 +102,12 @@ print(nectar.get_token_factory().generate_set_maximum_power_limit_token(tid, max
 # generate clear credit token
 register = 0
 print(nectar.get_token_factory().generate_clear_credit_token(tid, register, random_no,
-                                                              is_stid, drn, config_ref, debug))
+                                                             is_stid, drn, config_ref, debug))
 
 # generate set tariff rate token
 tariff_rate = 10
 print(nectar.get_token_factory().generate_set_tariff_rate_token(tid, tariff_rate, random_no,
-                                                                 is_stid, drn, config_ref, debug))
+                                                                is_stid, drn, config_ref, debug))
 
 # generate set 1st section decoder key token
 new_vending_key = '0abc12def3456789'
@@ -121,32 +120,32 @@ new_drn = '47500150231'
 new_issuer_identification_no = '600727'
 ro = 0
 print(nectar.get_token_factory().generate_set_1st_section_decoder_key_token(tid, new_vending_key, new_supply_group_code,
-                                                                             new_tariff_index, new_key_revision_no,
-                                                                             new_key_type, new_key_expiry_no,
-                                                                             new_drn, new_issuer_identification_no, ro,
-                                                                             is_stid, drn, config_ref, debug))
+                                                                            new_tariff_index, new_key_revision_no,
+                                                                            new_key_type, new_key_expiry_no,
+                                                                            new_drn, new_issuer_identification_no, ro,
+                                                                            is_stid, drn, config_ref, debug))
 
 # generate set 2nd section decoder key token
 print(nectar.get_token_factory().generate_set_2nd_section_decoder_key_token(tid, new_vending_key, new_supply_group_code,
-                                                                             new_tariff_index, new_key_revision_no,
-                                                                             new_key_type, new_key_expiry_no,
-                                                                             new_drn, new_issuer_identification_no, ro,
-                                                                             is_stid, drn, config_ref, debug))
+                                                                            new_tariff_index, new_key_revision_no,
+                                                                            new_key_type, new_key_expiry_no,
+                                                                            new_drn, new_issuer_identification_no, ro,
+                                                                            is_stid, drn, config_ref, debug))
 
 # generate clear tamper condition token
 pad = 10
 print(nectar.get_token_factory().generate_clear_tamper_condition_token(tid, pad, random_no, is_stid, drn,
-                                                                        config_ref, debug))
+                                                                       config_ref, debug))
 
 # generate set maximum phase power unbalance limit token
 mppul = 10
 print(nectar.get_token_factory().generate_set_maximum_phase_power_unbalance_limit_token(tid, mppul, random_no, is_stid,
-                                                                                         drn, config_ref, debug))
+                                                                                        drn, config_ref, debug))
 
 # generate set water meter factor token
 wm_factor = 10
 print(nectar.get_token_factory().generate_set_water_meter_factor_token(tid, wm_factor, random_no, is_stid,
-                                                                                       drn, config_ref, debug))
+                                                                       drn, config_ref, debug))
 
 """
 Configurations
