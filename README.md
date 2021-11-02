@@ -13,7 +13,7 @@ pip install nectar_python_sdk
 ## Usage
 
 ```python
-from nectar import Nectar
+from nectar_python_sdk.nectar import Nectar
 
 import datetime
 
